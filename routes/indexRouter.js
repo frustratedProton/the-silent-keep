@@ -7,4 +7,9 @@ const router = Router();
 // });
 router.get('/', getAllMessages);
 
+router.get('/sign-in', (req, res) => {
+    res.render('sign-in');
+    // res.render('sign-up');
+});
+
 export default router;
