@@ -1,15 +1,28 @@
 import { Router } from 'express';
-import { getAllMessages } from '../controllers/messageController.js';
+import { validationSignUp } from '../middleware/validators.js';
+import {
+    signUp,
+    renderSignUpForm,
+    signIn,
+    renderSignInForm,
+    renderJoinClubForm,
+    processJoinClub,
+} from '../controllers/authController.js';
+import { createNewMessage, renderAllMessages, renderNewMessageForm } from '../controllers/messageController.js';
 
 const router = Router();
-// router.get('/', (req, res) => {
-//     res.render('index')
-// });
-router.get('/', getAllMessages);
 
-router.get('/sign-in', (req, res) => {
-    res.render('sign-in');
-    // res.render('sign-up');
-});
+router.get('/auth/sign-up', renderSignUpForm);
+router.post('/auth/sign-up', validationSignUp, signUp);
+
+router.get('/auth/sign-in', renderSignInForm);
+router.post('/auth/sign-in', signIn);
+
+router.get('/join-club', renderJoinClubForm);
+router.post('/join-club', processJoinClub);
+
+router.get('/messages', renderAllMessages);
+router.get('/messages/new', renderNewMessageForm);
+router.post('/messages', createNewMessage);
 
 export default router;

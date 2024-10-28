@@ -5,6 +5,7 @@ import session from 'express-session';
 import indexRouter from './routes/indexRouter.js';
 import dotenv from 'dotenv';
 import passport from './config/passport.js';
+import CustomError, { CustomNotFoundError, CustomConflictError } from './middleware/customErrorMiddleware.js';
 
 dotenv.config();
 
@@ -24,6 +25,15 @@ app.use(session({ secret: 'cats', resave: false, saveUninitialized: false }));
 app.use(passport.session());
 
 app.use('/', indexRouter);
+
+// app.use((err, req, res, next) => {
+//     if (err instanceof CustomError) {
+//         return res.status(err.statusCode).json({ message: err.message });
+//     }
+//     // For other errors, you can return a generic error message
+//     res.status(500).json({ message: 'Internal Server Error' });
+// });
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

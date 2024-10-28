@@ -8,3 +8,4 @@ class CustomError extends Error {
 
 export const CustomNotFoundError = (msg) => new CustomError(msg, 404);
 export const CustomConflictError = (msg) => new CustomError(msg, 409);
+export default CustomError;

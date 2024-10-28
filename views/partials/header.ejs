@@ -1,0 +1,13 @@
+<!-- views/partials/header.ejs -->
+<header>
+    <h1>Messages</h1>
+    <nav>
+        <a href="/">Home</a>
+        <% if (user) { %>
+            <a href="/logout">Logout</a>
+        <% } else { %>
+            <a href="/auth/sign-in">Sign In</a>
+            <a href="/auth/sign-up">Sign Up</a>
+        <% } %>
+    </nav>
+</header>

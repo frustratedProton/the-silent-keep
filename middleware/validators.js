@@ -1,5 +1,5 @@
 import { body, validationResult } from 'express-validator';
-import { findUserByUsername } from '../db/userQueries';
+import { getUserByUsernameOrEmail } from '../db/userQueries.js';
 
 export const validationSignUp = [
     body('firstName')
@@ -21,7 +21,7 @@ export const validationSignUp = [
         .notEmpty()
         .withMessage('A valid username is required')
         .custom(async (username) => {
-            const user = await findUserByUsername(username);
+            const user = await getUserByUsernameOrEmail(username);
             if (user.length > 0) {
                 throw CustomConflictError('This username already exists');
             }
@@ -32,7 +32,7 @@ export const validationSignUp = [
         .isEmail()
         .withMessage('A valid email is required')
         .custom(async (email) => {
-            const user = await findUserByEmail(email);
+            const user = await getUserByUsernameOrEmail(email);
             if (user.length > 0) {
                 throw CustomConflictError('This email is already registered');
             }

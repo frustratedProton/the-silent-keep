@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Join the Club</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Join the Club</h1>
+            <form action="/join-club" method="POST">
+                <div class="form-group">
+                    <label for="passcode">Enter Passcode</label>
+                    <input
+                        id="passcode"
+                        name="passcode"
+                        type="password"
+                        required
+                        placeholder="Enter the secret passcode"
+                    />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

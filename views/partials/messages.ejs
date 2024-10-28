@@ -1,0 +1,16 @@
+<section id="messages">
+    <% if (messages && messages.length > 0) { %>
+        <ul>
+            <% messages.forEach(message => { %>
+                <li>
+                    <h2><%= message.title %></h2>
+                    <p><%= message.content %></p>
+                    <p><small>Written by: <%= message.author %></small></p> 
+                    <p><small>Created at: <%= new Date(message.created_at).toLocaleString() %></small></p>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No messages found.</p>
+    <% } %>
+</section>
