@@ -44,7 +44,7 @@ export const validationSignUp = [
 
     body('passwordConfirmation')
         .custom((value, { req }) => value == req.body.password)
-        .whitelist('Password doesnt match'),
+        .withMessage('Password doesnt match'),
 ];
 
 // TODO: need to make error diplay more robust

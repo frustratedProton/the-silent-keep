@@ -11,6 +11,9 @@
                 placeholder="Enter your first name"
                 class="form-input"
             />
+            <% if (errors.firstName) { %>
+                <div class="error-message"><%= errors.firstName.msg %></div>
+            <% } %>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
@@ -22,6 +25,9 @@
                 placeholder="Enter your last name"
                 class="form-input"
             />
+            <% if (errors.lastName) { %>
+                <div class="error-message"><%= errors.lastName.msg %></div>
+            <% } %>
         </div>
         <div class="form-group">
             <label for="username">Username</label>
@@ -33,6 +39,9 @@
                 placeholder="Enter a username"
                 class="form-input"
             />
+            <% if (errors.username) { %>
+                <div class="error-message"><%= errors.username.msg %></div>
+            <% } %>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
@@ -44,6 +53,9 @@
                 placeholder="Enter your email"
                 class="form-input"
             />
+            <% if (errors.email) { %>
+                <div class="error-message"><%= errors.email.msg %></div>
+            <% } %>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -55,6 +67,23 @@
                 placeholder="Create a password"
                 class="form-input"
             />
+            <% if (errors.password) { %>
+                <div class="error-message"><%= errors.password.msg %></div>
+            <% } %>
+        </div>
+        <div class="form-group">
+            <label for="passwordConfirmation">Confirm Password</label>
+            <input
+                id="passwordConfirmation"
+                name="passwordConfirmation"
+                type="password"
+                required
+                placeholder="Confirm your password"
+                class="form-input"
+            />
+            <% if (errors.passwordConfirmation) { %>
+                <div class="error-message"><%= errors.passwordConfirmation.msg %></div>
+            <% } %>
         </div>
         <button type="submit" class="form-button">Sign Up</button>
     </form>

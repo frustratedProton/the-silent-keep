@@ -87,7 +87,6 @@ body {
     color: #ffd700;
 }
 
-
 /* Form Section Styles */
 .form-section {
     width: 100%;
@@ -140,4 +139,105 @@ body {
 
 .link:hover {
     text-decoration: underline;
+}
+
+.create-post-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.create-post-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #ffd700;
+    color: #1b263b;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.create-post-button:hover {
+    background-color: #f0c040;
+    color: #1b263b;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.delete-button {
+    background-color: #ff5555;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #cc4444;
+}
+
+/* Message Container */
+.message-container {
+    background-color: #1b263b;
+    color: #ffd700;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+/* Message Title */
+.message-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffd700;
+}
+
+/* Input Styles */
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffd700;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #ffcc00;
+    outline: none;
+}
+
+/* Submit Button Styles */
+.submit-button {
+    background-color: #ffd700;
+    color: #1b263b;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #f0c040;
 }

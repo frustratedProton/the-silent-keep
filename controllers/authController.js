@@ -13,8 +13,15 @@ export const signUp = asyncHandler(async (req, res, next) => {
 
     const password_hash = await bcrypt.hash(password, 10);
     try {
-        await createUser(firstName, lastName, email, username, password_hash);
-        res.status(201).redirect('/');
+        const newUser = await createUser(firstName, lastName, email, username, password_hash);
+
+        // added to automatically sign-in user after successful sign up
+        req.login(newUser, (err) => {
+            if (err) {
+                next(err);
+            }
+            res.status(201).redirect('/');
+        });
     } catch (error) {
         if (error.code === '23505') {
             return next(
@@ -30,13 +37,13 @@ export const renderSignUpForm = (req, res) => {
         page: 'sign-up',
         pageTitle: 'Sign Up',
         user: req.user,
+        errors: {},
     });
 };
 
 export const signIn = asyncHandler(async (req, res, next) => {
     const { login, password } = req.body;
     const user = await getUserByUsernameOrEmail(login);
-    console.log(user);
     if (!user) {
         return next(new CustomError('User not found'), 404);
     }
@@ -82,11 +89,6 @@ export const processJoinClub = asyncHandler(async (req, res, next) => {
 });
 
 export const renderJoinClubForm = (req, res) => {
-    // res.render('index', {
-    //     page: 'join-club',
-    //     pageTitle: 'Join the Club',
-    //     user: req.user,
-    // });
     res.render('join-club');
 };
 

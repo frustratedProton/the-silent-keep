@@ -7,6 +7,12 @@
                     <p><%= message.content %></p>
                     <p><small>Written by: <%= message.author %></small></p> 
                     <p><small>Created at: <%= new Date(message.created_at).toLocaleString() %></small></p>
+
+                    <% if (user && user.is_admin) { %>
+                        <form action="/messages/<%= message.id %>/delete" method="POST" class="delete-form">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    <% } %>
                 </li>
             <% }); %>
         </ul>

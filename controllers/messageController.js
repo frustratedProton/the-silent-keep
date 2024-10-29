@@ -1,5 +1,9 @@
 import expressAsyncHandler from 'express-async-handler';
-import { getAllMessages, createMessage } from '../db/messageQueries.js';
+import {
+    getAllMessages,
+    createMessage,
+    deleteMessageById,
+} from '../db/messageQueries.js';
 import CustomError from '../middleware/customErrorMiddleware.js';
 
 export const renderAllMessages = async (req, res) => {
@@ -8,9 +12,8 @@ export const renderAllMessages = async (req, res) => {
         ...message,
         author: req.isAuthenticated()
             ? message.username
-            : 'Someone mysterious...',
+            : 'Shadow',
     }));
-    
 
     res.render('index', {
         page: 'messages',
@@ -25,7 +28,7 @@ export const renderNewMessageForm = (req, res) => {
         return res.redirect('/auth/sign-in');
     }
 
-    res.render('new-message');
+    res.render('new-message', { user: req.user });
 };
 
 export const createNewMessage = expressAsyncHandler(async (req, res, next) => {
@@ -37,5 +40,19 @@ export const createNewMessage = expressAsyncHandler(async (req, res, next) => {
     }
 
     await createMessage(title, content, userId);
-    res.redirect('/messages');
+    res.redirect('/');
+});
+
+export const deleteMessage = expressAsyncHandler(async (req, res, next) => {
+    try {
+        if (!req.user || !req.user.is_admin) {
+            return next(new CustomError('Unauthorized', 403));
+        }
+
+        const messageId = req.params.id;
+        await deleteMessageById(messageId);
+        res.redirect('/');
+    } catch (err) {
+        next(err);
+    }
 });

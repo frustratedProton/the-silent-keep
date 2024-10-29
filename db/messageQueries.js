@@ -10,10 +10,12 @@ export const getAllMessages = async () => {
 };
 
 export const createMessage = async (title, content, userId) => {
-    console.log(title, content, userId);
-
     await pool.query(
         'INSERT INTO messages (title, content, user_id) VALUES ($1, $2, $3)',
         [title, content, userId]
     );
+};
+
+export const deleteMessageById = async (id) => {
+    await pool.query('DELETE FROM messages WHERE id = $1', [id]);
 };

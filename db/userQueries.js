@@ -8,10 +8,11 @@ export const createUser = async (
     username,
     passwordHash
 ) => {
-    await pool.query(
-        'INSERT INTO users (first_name, last_name, username, email,  password_hash, is_secret_member, is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+    const { rows } = await pool.query(
+        'INSERT INTO users (first_name, last_name, username, email, password_hash, is_secret_member, is_admin) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
         [firstName, lastName, username, email, passwordHash, false, false]
     );
+    return rows[0];
 };
 
 export const getUserByUsernameOrEmail = async (login) => {

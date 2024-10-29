@@ -10,6 +10,12 @@
     <%- include('partials/header', { user }) %>
 
     <main class="main-content">
+        <% if (user) { %>
+            <div class="create-post-container">
+                <a href="/messages/new" class="create-post-button">Create Post</a>
+            </div>
+        <% } %>
+
         <% if (page === 'messages') { %>
             <%- include('partials/messages') %>
         <% } else if (page === 'sign-in') { %>
