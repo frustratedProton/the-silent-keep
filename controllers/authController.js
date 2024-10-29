@@ -13,7 +13,13 @@ export const signUp = asyncHandler(async (req, res, next) => {
 
     const password_hash = await bcrypt.hash(password, 10);
     try {
-        const newUser = await createUser(firstName, lastName, email, username, password_hash);
+        const newUser = await createUser(
+            firstName,
+            lastName,
+            email,
+            username,
+            password_hash
+        );
 
         // added to automatically sign-in user after successful sign up
         req.login(newUser, (err) => {
@@ -89,7 +95,7 @@ export const processJoinClub = asyncHandler(async (req, res, next) => {
 });
 
 export const renderJoinClubForm = (req, res) => {
-    res.render('join-club');
+    res.render('join-club', { user: req.user });
 };
 
 export const processAdminReq = asyncHandler(async (req, res, next) => {
@@ -105,5 +111,5 @@ export const processAdminReq = asyncHandler(async (req, res, next) => {
 });
 
 export const renderBecomeAdminForm = (req, res) => {
-    res.render('become-admin');
+    res.render('become-admin', { user: req.user });
 };

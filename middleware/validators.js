@@ -47,7 +47,23 @@ export const validationSignUp = [
         .withMessage('Password doesnt match'),
 ];
 
-// TODO: need to make error diplay more robust
+export const validationSignIn = [
+    body('login')
+        .trim()
+        .notEmpty()
+        .withMessage('Username or email is required'),
+
+    body('password').notEmpty().withMessage('Password is required'),
+];
+
+export const validationJoinClub = [
+    body('passcode').notEmpty().withMessage('Passcode is required'),
+];
+
+export const validationBecomeAdmin = [
+    body('passcode').notEmpty().withMessage('Admin passcode is required'),
+];
+
 export const handleValidationErrors = (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

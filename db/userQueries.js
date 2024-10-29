@@ -1,5 +1,4 @@
 import pool from './pool.js';
-// TODO: Need to change username from email and make it seperate field
 
 export const createUser = async (
     firstName,
