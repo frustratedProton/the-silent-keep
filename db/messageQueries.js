@@ -6,7 +6,6 @@ export const getAllMessages = async () => {
         FROM messages
         JOIN users ON messages.user_id = users.id
     `);
-    console.log(rows);
     return rows;
 };
 

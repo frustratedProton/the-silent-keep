@@ -1,10 +1,22 @@
 <!-- views/partials/header.ejs -->
-<header>
-    <h1>Messages</h1>
+<header class="header">
+    <h1>
+        <% if (user) { %>
+            Welcome, <%= user.first_name %>!
+        <% } else { %>
+            Welcome to the Velvet Room
+        <% } %>
+    </h1>
     <nav>
         <a href="/">Home</a>
         <% if (user) { %>
+            <% if (!user.is_secret_member) { %>
+                <a href="/join-club">Join the Club</a>
+            <% } %>
             <a href="/logout">Logout</a>
+            <% if (!user.is_admin) { %>
+                <a href="/auth/become-admin">Become an Admin</a>
+            <% } %>
         <% } else { %>
             <a href="/auth/sign-in">Sign In</a>
             <a href="/auth/sign-up">Sign Up</a>

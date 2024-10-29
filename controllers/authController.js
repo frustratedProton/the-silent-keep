@@ -3,6 +3,7 @@ import asyncHandler from 'express-async-handler';
 import {
     createUser,
     getUserByUsernameOrEmail,
+    updateUserAdminStatus,
     updateUserMembershipStatus,
 } from '../db/userQueries.js';
 import CustomError from '../middleware/customErrorMiddleware.js';
@@ -59,6 +60,15 @@ export const renderSignInForm = (req, res) => {
     });
 };
 
+export const logout = (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/');
+    });
+};
+
 export const processJoinClub = asyncHandler(async (req, res, next) => {
     const { passcode } = req.body;
     const uuId = req.user.id;
@@ -72,9 +82,26 @@ export const processJoinClub = asyncHandler(async (req, res, next) => {
 });
 
 export const renderJoinClubForm = (req, res) => {
-    res.render('index', {
-        page: 'join-club',
-        pageTitle: 'Join the Club',
-        user: req.user,
-    });
+    // res.render('index', {
+    //     page: 'join-club',
+    //     pageTitle: 'Join the Club',
+    //     user: req.user,
+    // });
+    res.render('join-club');
+};
+
+export const processAdminReq = asyncHandler(async (req, res, next) => {
+    const { passcode } = req.body;
+    const uuid = req.user.id;
+
+    if (passcode === process.env.ADMIN_PASSCODE) {
+        await updateUserAdminStatus(uuid, true);
+        res.redirect('/');
+    } else {
+        next(new CustomError('Invalid passcode', 403));
+    }
+});
+
+export const renderBecomeAdminForm = (req, res) => {
+    res.render('become-admin');
 };

@@ -4,8 +4,6 @@ import CustomError from '../middleware/customErrorMiddleware.js';
 
 export const renderAllMessages = async (req, res) => {
     const messages = await getAllMessages();
-    console.log('User authenticated:', req.isAuthenticated());
-
     const formattedMessages = messages.map((message) => ({
         ...message,
         author: req.isAuthenticated()
@@ -13,7 +11,6 @@ export const renderAllMessages = async (req, res) => {
             : 'Someone mysterious...',
     }));
     
-    console.log("formattedMessages: ", formattedMessages)
 
     res.render('index', {
         page: 'messages',

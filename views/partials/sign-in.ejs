@@ -1,6 +1,6 @@
-<section id="sign-in">
+<section id="sign-in" class="form-section">
     <h1>Sign In</h1>
-    <form action="/auth/sign-in" method="POST">
+    <form action="/auth/sign-in" method="POST" class="form-container">
         <div class="form-group">
             <label for="login">Username or Email</label>
             <input
@@ -9,6 +9,7 @@
                 type="text"
                 required
                 placeholder="Enter your username or email"
+                class="form-input"
             />
         </div>
         <div class="form-group">
@@ -19,9 +20,12 @@
                 type="password"
                 required
                 placeholder="Enter your password"
+                class="form-input"
             />
         </div>
-        <button type="submit">Sign In</button>
+        <button type="submit" class="form-button">Sign In</button>
     </form>
-    <p>Don't have an account? <a href="/auth/sign-up">Sign Up</a></p>
+    <p>
+        Don't have an account? <a href="/auth/sign-up" class="link">Sign Up</a>
+    </p>
 </section>

@@ -1,27 +1,65 @@
-<section id="sign-up">
+<section id="sign-up" class="form-section">
     <h1>Sign Up</h1>
-    <form action="/auth/sign-up" method="POST">
+    <form action="/auth/sign-up" method="POST" class="form-container">
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input id="firstName" name="firstName" type="text" required placeholder="Enter your first name" />
+            <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                required
+                placeholder="Enter your first name"
+                class="form-input"
+            />
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input id="lastName" name="lastName" type="text" required placeholder="Enter your last name" />
+            <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                required
+                placeholder="Enter your last name"
+                class="form-input"
+            />
         </div>
         <div class="form-group">
             <label for="username">Username</label>
-            <input id="username" name="username" type="text" required placeholder="Enter a username" />
+            <input
+                id="username"
+                name="username"
+                type="text"
+                required
+                placeholder="Enter a username"
+                class="form-input"
+            />
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="Enter your email" />
+            <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="Enter your email"
+                class="form-input"
+            />
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input id="password" name="password" type="password" required placeholder="Create a password" />
+            <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                placeholder="Create a password"
+                class="form-input"
+            />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" class="form-button">Sign Up</button>
     </form>
-    <p>Already have an account? <a href="/auth/sign-in">Sign In</a></p>
+    <p>
+        Already have an account?
+        <a href="/auth/sign-in" class="link">Sign In</a>
+    </p>
 </section>

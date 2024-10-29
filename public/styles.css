@@ -1,0 +1,143 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    line-height: 1.6;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0d1b2a;
+    color: #fffff0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Header Styles */
+.header {
+    width: 100%;
+    background-color: #1b263b;
+    color: #ffd700;
+    padding: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.header nav a {
+    color: #ffd700;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+.footer {
+    width: 100%;
+    background-color: #1b263b;
+    color: #ffd700;
+    text-align: center;
+    padding: 15px;
+    bottom: 0;
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+/* Messages Section */
+#messages {
+    margin-top: 20px;
+}
+
+#messages ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#messages li {
+    background-color: #1b263b;
+    color: #fffff0;
+    border: 1px solid #ffd700;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#messages h2 {
+    color: #ffd700;
+}
+
+
+/* Form Section Styles */
+.form-section {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #1b263b;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.form-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffd700;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #ffc107;
+}
+
+.link {
+    color: #9b2a53;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
