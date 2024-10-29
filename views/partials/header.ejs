@@ -11,9 +11,9 @@
         <a href="/">Home</a>
         <% if (user) { %>
             <% if (!user.is_secret_member) { %>
-                <a href="/join-club">Join the Club</a>
+                <a href="/auth/join-club">Join the Room</a>
             <% } %>
-            <a href="/logout">Logout</a>
+            <a href="/auth/logout">Logout</a>
             <% if (!user.is_admin) { %>
                 <a href="/auth/become-admin">Become an Admin</a>
             <% } %>
