@@ -1,5 +1,6 @@
 import { body, validationResult } from 'express-validator';
 import { getUserByUsernameOrEmail } from '../db/userQueries.js';
+import { CustomConflictError } from './customErrorMiddleware.js';
 
 export const validationSignUp = [
     body('firstName')
@@ -12,9 +13,9 @@ export const validationSignUp = [
     body('lastName')
         .trim()
         .notEmpty()
-        .withMessage('First Name is required')
+        .withMessage('Last Name is required')
         .isAlpha()
-        .withMessage('First Name should only contain letters'),
+        .withMessage('Last Name should only contain letters'),
 
     body('username')
         .trim()
@@ -22,7 +23,8 @@ export const validationSignUp = [
         .withMessage('A valid username is required')
         .custom(async (username) => {
             const user = await getUserByUsernameOrEmail(username);
-            if (user.length > 0) {
+            if (Array.isArray(user) && user.length > 0) {
+                // Ensure user is an array
                 throw CustomConflictError('This username already exists');
             }
         }),
@@ -33,7 +35,8 @@ export const validationSignUp = [
         .withMessage('A valid email is required')
         .custom(async (email) => {
             const user = await getUserByUsernameOrEmail(email);
-            if (user.length > 0) {
+            if (Array.isArray(user) && user.length > 0) {
+                // Ensure user is an array
                 throw CustomConflictError('This email is already registered');
             }
         }),
@@ -43,8 +46,8 @@ export const validationSignUp = [
         .withMessage('Password must be at least 5 characters long'),
 
     body('passwordConfirmation')
-        .custom((value, { req }) => value == req.body.password)
-        .withMessage('Password doesnt match'),
+        .custom((value, { req }) => value === req.body.password)
+        .withMessage('Passwords do not match'),
 ];
 
 export const validationSignIn = [
@@ -67,7 +70,7 @@ export const validationBecomeAdmin = [
 export const handleValidationErrors = (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(404).json({ errors: errors.array() });
+        return res.status(400).json({ errors: errors.array() }); // Changed status to 400 (Bad Request)
     }
     next();
 };
